@@ -170,3 +170,4 @@ cython_debug/
 *.key
 /doc/build/
 /unit_tests/__pycache__/
+logs/*.log
