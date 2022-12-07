@@ -10,33 +10,27 @@ from errors import IncorrectDataRecivedError
 from common.variables import *
 from common.utils import *
 from decos import log
+from descrptrs import Port, Set_Port_or_Default_Port
 
 # Инициализация логирования сервера.
 logger = logging.getLogger('server')
 
 # Парсер аргументов коммандной строки.
 @log
-def arg_parser():
+def arg_parser() -> tuple:
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', default=DEFAULT_PORT, type=int, nargs='?')
     parser.add_argument('-a', default='', nargs='?')
     namespace = parser.parse_args(sys.argv[1:])
     listen_address = namespace.a
     listen_port = namespace.p
-
-    # проверка получения корретного номера порта для работы сервера.
-    if not 1023 < listen_port < 65536:
-        logger.critical(
-            f'Попытка запуска сервера с указанием неподходящего порта {listen_port}. Допустимы адреса с 1024 до 65535.')
-        exit(1)
-
     return listen_address, listen_port
 
 
 # Основной класс сервера
 class Server():
     
-    port = 7777 # TODO add Desriptor ports
+    port = Port()
     
     def __init__(self, listen_address, listen_port):
         # Параметры подключения сервера
