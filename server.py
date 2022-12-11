@@ -6,12 +6,13 @@ import logging
 import select
 import time
 import logs.config_server_log
-from errors import IncorrectDataRecivedError
+from common.errors import IncorrectDataRecivedError
 from common.metaclasses import ServerVerifier
 from common.variables import *
 from common.utils import *
-from decos import log
+from common.decos import log
 from common.descrptors import Port #, Set_Port_or_Default_Port
+from server_db import ServerStorage
 
 # Инициализация логирования сервера.
 logger = logging.getLogger('server')
@@ -159,6 +160,9 @@ class Server(metaclass=ServerVerifier):
 def main():
     # Загрузка параметров командной строки, если нет параметров, то задаём значения по умоланию.
     listen_address, listen_port = arg_parser()
+    
+    # Инициализация базы данных
+    database = ServerStorage()
 
     # Создание экземпляра класса - сервера.
     server = Server(listen_address, listen_port)

@@ -10,8 +10,8 @@ import logs.config_client_log
 from common.metaclasses import ClientVerifier
 from common.variables import *
 from common.utils import *
-from errors import IncorrectDataRecivedError, ReqFieldMissingError, ServerError
-from decos import log
+from common.errors import IncorrectDataRecivedError, ReqFieldMissingError, ServerError
+from common.decos import log
 
 
 # Инициализация клиентского логера
