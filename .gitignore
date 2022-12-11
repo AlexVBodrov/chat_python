@@ -171,3 +171,4 @@ cython_debug/
 /doc/build/
 /unit_tests/__pycache__/
 logs/*.log
+server.log*

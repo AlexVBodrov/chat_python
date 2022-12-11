@@ -10,7 +10,7 @@ from errors import IncorrectDataRecivedError
 from common.variables import *
 from common.utils import *
 from decos import log
-from descrptrs import Port, Set_Port_or_Default_Port
+from common.descrptors import Port #, Set_Port_or_Default_Port
 
 # Инициализация логирования сервера.
 logger = logging.getLogger('server')
@@ -31,6 +31,7 @@ def arg_parser() -> tuple:
 class Server():
     
     port = Port()
+    # or port = Set_Port_or_Default_Port
     
     def __init__(self, listen_address, listen_port):
         # Параметры подключения сервера
