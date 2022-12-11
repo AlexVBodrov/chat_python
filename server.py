@@ -7,6 +7,7 @@ import select
 import time
 import logs.config_server_log
 from errors import IncorrectDataRecivedError
+from common.metaclasses import ServerVerifier
 from common.variables import *
 from common.utils import *
 from decos import log
@@ -28,7 +29,7 @@ def arg_parser() -> tuple:
 
 
 # Основной класс сервера
-class Server():
+class Server(metaclass=ServerVerifier):
     
     port = Port()
     # or port = Set_Port_or_Default_Port
