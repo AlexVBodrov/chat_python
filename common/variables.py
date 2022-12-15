@@ -38,3 +38,5 @@ RESPONSE_400 = {
             ERROR: None
         }
 
+# Создаём движок базы данных
+SERVER_DATABASE = "sqlite:///server_base.db3"
