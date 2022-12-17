@@ -13,7 +13,6 @@ from common.utils import *
 from common.errors import IncorrectDataRecivedError, ReqFieldMissingError, ServerError
 from common.decos import log
 
-
 # Инициализация клиентского логера
 logger = logging.getLogger('client')
 
