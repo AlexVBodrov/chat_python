@@ -7,22 +7,32 @@ import os
 
 
 # GUI - Создание таблицы QModel, для отображения в окне программы.
-# стелаж
+# стелаж list_users
 def gui_create_model(database):
     list_users = database.active_users_list()
+    # стелаж
     list = QStandardItemModel()
+    
+    # Добавляем Заголовки(Горизон. Надписи или Шапка)
     list.setHorizontalHeaderLabels(['Имя Клиента', 'IP Адрес', 'Порт', 'Время подключения'])
+    
+    # далее, рисуем строку и колонки(Ячеки стелажа)
     for row in list_users:
         user, ip, port, time = row
+        
         user = QStandardItem(user)
         user.setEditable(False)
+        
         ip = QStandardItem(ip)
         ip.setEditable(False)
+        
         port = QStandardItem(str(port))
         port.setEditable(False)
+        
         # Уберём милисекунды из строки времени, т.к. такая точность не требуется.
         time = QStandardItem(str(time.replace(microsecond=0)))
         time.setEditable(False)
+        
         list.appendRow([user, ip, port, time])
     return list
 
@@ -33,19 +43,28 @@ def create_stat_model(database):
     hist_list = database.message_history()
 
     # Объект модели данных:
+    # стелаж
     list = QStandardItemModel()
+    # ADD HEADERS
     list.setHorizontalHeaderLabels(
         ['Имя Клиента', 'Последний раз входил', 'Сообщений отправлено', 'Сообщений получено'])
+    
+    # далее, рисуем строку и колонки(Ячеки стелажа)
     for row in hist_list:
         user, last_seen, sent, recvd = row
+        
         user = QStandardItem(user)
         user.setEditable(False)
+        
         last_seen = QStandardItem(str(last_seen.replace(microsecond=0)))
         last_seen.setEditable(False)
+        
         sent = QStandardItem(str(sent))
         sent.setEditable(False)
+        
         recvd = QStandardItem(str(recvd))
         recvd.setEditable(False)
+        
         list.appendRow([user, last_seen, sent, recvd])
     return list
 
@@ -58,6 +77,7 @@ class MainWindow(QMainWindow):
         self.initUI()
 
     def initUI(self):
+        # Функция-интерфейс
         
         #объявляем 4 кнопки ниже
         
