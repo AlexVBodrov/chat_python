@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>614</height>
+    <height>600</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Чат.  Клиент Мессенджер</string>
@@ -17,21 +23,41 @@
    <enum>Qt::ToolButtonTextOnly</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QListView" name="listView_contacts">
+   <widget class="QTableWidget" name="tableWidget_contacts">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>50</y>
+      <y>40</y>
       <width>231</width>
       <height>461</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string/>
+    </property>
+    <column>
+     <property name="text">
+      <string>№ id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Имя контакта</string>
+     </property>
+    </column>
    </widget>
    <widget class="QLabel" name="label_contacts_list">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>20</y>
+      <y>10</y>
       <width>221</width>
       <height>21</height>
      </rect>
@@ -53,7 +79,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>532</y>
+      <y>522</y>
       <width>115</width>
       <height>45</height>
      </rect>
@@ -76,7 +102,7 @@
     <property name="geometry">
      <rect>
       <x>144</x>
-      <y>532</y>
+      <y>522</y>
       <width>111</width>
       <height>45</height>
      </rect>
@@ -99,7 +125,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>530</y>
+      <y>520</y>
       <width>91</width>
       <height>45</height>
      </rect>
@@ -115,7 +141,7 @@
     <property name="geometry">
      <rect>
       <x>544</x>
-      <y>530</y>
+      <y>520</y>
       <width>231</width>
       <height>45</height>
      </rect>
@@ -131,7 +157,7 @@
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>50</y>
+      <y>40</y>
       <width>501</width>
       <height>371</height>
      </rect>
@@ -155,7 +181,7 @@
     <property name="geometry">
      <rect>
       <x>283</x>
-      <y>460</y>
+      <y>450</y>
       <width>501</width>
       <height>51</height>
      </rect>
@@ -177,8 +203,8 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>20</y>
-      <width>201</width>
+      <y>10</y>
+      <width>131</width>
       <height>21</height>
      </rect>
     </property>
@@ -199,7 +225,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>430</y>
+      <y>420</y>
       <width>201</width>
       <height>21</height>
      </rect>
@@ -261,5 +287,22 @@ p, li { white-space: pre-wrap; }
   </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>btn_clear_textEdit</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit_new_message</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>335</x>
+     <y>568</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>339</x>
+     <y>508</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

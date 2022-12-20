@@ -14,15 +14,28 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Client_Main_Window(object):
     def setupUi(self, Client_Main_Window):
         Client_Main_Window.setObjectName("Client_Main_Window")
-        Client_Main_Window.resize(800, 614)
+        Client_Main_Window.resize(800, 600)
+        Client_Main_Window.setMinimumSize(QtCore.QSize(800, 600))
         Client_Main_Window.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
         self.centralwidget = QtWidgets.QWidget(Client_Main_Window)
         self.centralwidget.setObjectName("centralwidget")
-        self.listView_contacts = QtWidgets.QListView(self.centralwidget)
-        self.listView_contacts.setGeometry(QtCore.QRect(20, 50, 231, 461))
-        self.listView_contacts.setObjectName("listView_contacts")
+        self.tableWidget_contacts = QtWidgets.QTableWidget(self.centralwidget)
+        self.tableWidget_contacts.setGeometry(QtCore.QRect(20, 40, 231, 461))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setWeight(50)
+        self.tableWidget_contacts.setFont(font)
+        self.tableWidget_contacts.setToolTip("")
+        self.tableWidget_contacts.setObjectName("tableWidget_contacts")
+        self.tableWidget_contacts.setColumnCount(2)
+        self.tableWidget_contacts.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_contacts.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_contacts.setHorizontalHeaderItem(1, item)
         self.label_contacts_list = QtWidgets.QLabel(self.centralwidget)
-        self.label_contacts_list.setGeometry(QtCore.QRect(30, 20, 221, 21))
+        self.label_contacts_list.setGeometry(QtCore.QRect(30, 10, 221, 21))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -30,7 +43,7 @@ class Ui_Client_Main_Window(object):
         self.label_contacts_list.setAlignment(QtCore.Qt.AlignCenter)
         self.label_contacts_list.setObjectName("label_contacts_list")
         self.btn_Add_contact = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_Add_contact.setGeometry(QtCore.QRect(20, 532, 115, 45))
+        self.btn_Add_contact.setGeometry(QtCore.QRect(20, 522, 115, 45))
         font = QtGui.QFont()
         font.setPointSize(9)
         font.setBold(False)
@@ -39,7 +52,7 @@ class Ui_Client_Main_Window(object):
         self.btn_Add_contact.setStyleSheet("background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(255, 196, 0, 255), stop:1 rgba(255, 255, 255, 255));")
         self.btn_Add_contact.setObjectName("btn_Add_contact")
         self.btn_Delete_contact = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_Delete_contact.setGeometry(QtCore.QRect(144, 532, 111, 45))
+        self.btn_Delete_contact.setGeometry(QtCore.QRect(144, 522, 111, 45))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
@@ -48,15 +61,15 @@ class Ui_Client_Main_Window(object):
         self.btn_Delete_contact.setStyleSheet("background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(255, 5, 0, 255), stop:1 rgba(255, 255, 255, 255));")
         self.btn_Delete_contact.setObjectName("btn_Delete_contact")
         self.btn_clear_textEdit = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_clear_textEdit.setGeometry(QtCore.QRect(290, 530, 91, 45))
+        self.btn_clear_textEdit.setGeometry(QtCore.QRect(290, 520, 91, 45))
         self.btn_clear_textEdit.setStyleSheet("background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(255, 5, 0, 255), stop:1 rgba(255, 255, 255, 255));")
         self.btn_clear_textEdit.setObjectName("btn_clear_textEdit")
         self.btn_Send_new_message = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_Send_new_message.setGeometry(QtCore.QRect(544, 530, 231, 45))
+        self.btn_Send_new_message.setGeometry(QtCore.QRect(544, 520, 231, 45))
         self.btn_Send_new_message.setStyleSheet("background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(55, 255, 0, 255), stop:1 rgba(255, 255, 255, 255));")
         self.btn_Send_new_message.setObjectName("btn_Send_new_message")
         self.text_History_message = QtWidgets.QLabel(self.centralwidget)
-        self.text_History_message.setGeometry(QtCore.QRect(280, 50, 501, 371))
+        self.text_History_message.setGeometry(QtCore.QRect(280, 40, 501, 371))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.text_History_message.setFont(font)
@@ -64,13 +77,13 @@ class Ui_Client_Main_Window(object):
         self.text_History_message.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTop|QtCore.Qt.AlignTrailing)
         self.text_History_message.setObjectName("text_History_message")
         self.textEdit_new_message = QtWidgets.QTextEdit(self.centralwidget)
-        self.textEdit_new_message.setGeometry(QtCore.QRect(283, 460, 501, 51))
+        self.textEdit_new_message.setGeometry(QtCore.QRect(283, 450, 501, 51))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.textEdit_new_message.setFont(font)
         self.textEdit_new_message.setObjectName("textEdit_new_message")
         self.label_history_m = QtWidgets.QLabel(self.centralwidget)
-        self.label_history_m.setGeometry(QtCore.QRect(290, 20, 201, 21))
+        self.label_history_m.setGeometry(QtCore.QRect(290, 10, 131, 21))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -78,7 +91,7 @@ class Ui_Client_Main_Window(object):
         self.label_history_m.setAlignment(QtCore.Qt.AlignCenter)
         self.label_history_m.setObjectName("label_history_m")
         self.label_new_message = QtWidgets.QLabel(self.centralwidget)
-        self.label_new_message.setGeometry(QtCore.QRect(400, 430, 201, 21))
+        self.label_new_message.setGeometry(QtCore.QRect(400, 420, 201, 21))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -108,11 +121,16 @@ class Ui_Client_Main_Window(object):
         self.menubar.addAction(self.menu_2.menuAction())
 
         self.retranslateUi(Client_Main_Window)
+        self.btn_clear_textEdit.clicked.connect(self.textEdit_new_message.clear)
         QtCore.QMetaObject.connectSlotsByName(Client_Main_Window)
 
     def retranslateUi(self, Client_Main_Window):
         _translate = QtCore.QCoreApplication.translate
         Client_Main_Window.setWindowTitle(_translate("Client_Main_Window", "Чат.  Клиент Мессенджер"))
+        item = self.tableWidget_contacts.horizontalHeaderItem(0)
+        item.setText(_translate("Client_Main_Window", "№ id"))
+        item = self.tableWidget_contacts.horizontalHeaderItem(1)
+        item.setText(_translate("Client_Main_Window", "Имя контакта"))
         self.label_contacts_list.setText(_translate("Client_Main_Window", "Список контактов"))
         self.btn_Add_contact.setText(_translate("Client_Main_Window", "Добавить контакт"))
         self.btn_Delete_contact.setText(_translate("Client_Main_Window", "Удалить контакт"))
@@ -131,7 +149,27 @@ class Ui_Client_Main_Window(object):
         self.action_2.setText(_translate("Client_Main_Window", "Открыть"))
         self.action_3.setText(_translate("Client_Main_Window", "Сохранить"))
         self.action_4.setText(_translate("Client_Main_Window", "Добавить контакт"))
-
+    
+    
+    def show_history_message(self):
+        # when DoubleClick is clicked to contact
+        # show_history_message for items(contact)
+        pass
+    
+    def send_message(self):
+        # when push btn_Send_new_message
+        # send message from clien to contact
+        pass
+    
+    def add_contact(self, new_contact):
+        # when push btn_Add_contact
+        # add_contact to contact_list
+        pass        
+    
+    def delete_contact(self, contact):
+        # when push btn_Delete_contact
+        # add_contact to contact_list
+        pass  
 
 if __name__ == "__main__":
     import sys
