@@ -4,11 +4,8 @@ from PyQt5.QtWidgets import QDialog, QApplication
 from PyQt5.uic import loadUi
 import sqlite3
 import bcrypt
+from time import sleep
 
-# password = '1234'.encode('utf-8')
-
-# hashed = bcrypt.hashpw(password, bcrypt.gensalt())
-# print(hashed)
 
 DATABASE = 'client/users_info.db'
 UI_login_form = 'client\login_form\login.ui'
@@ -48,7 +45,7 @@ class Login(QDialog):
         cur.execute(sqlite_select_query, (name,))
         try:
             # Получаем Хэш из БД
-            hash_password = cur.fetchone()[0].encode('utf-8')
+            hash_password = cur.fetchone()[0]
             # Проверяем с помощью bcrypt password => hash_password
             if bcrypt.checkpw(password, hash_password):
                 self.label_error_message.setText(f'Successfully logged in name={name}')
@@ -71,19 +68,49 @@ class CreateAcc(QDialog):
         self.lineEdit_password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineEdit_password_conform.setEchoMode(QtWidgets.QLineEdit.Password)
         self.btn_sing_up.clicked.connect(self.create_acc_funtion)
+        # back to login form
+        self.pushButton_back_login.clicked.connect(self.goto_login)
     
     
     def create_acc_funtion(self):
         """Login to chat client."""
         name = self.lineEdit_name.text()
-        if self.lineEdit_password.text() == self.lineEdit_password_conform.text():
-            password = self.lineEdit_password.text()
         email = self.lineEdit_email.text()
-        print(f'Successfully logged in name={name}, password={password}, email={email}')
+        password = self.lineEdit_password.text()
+        if len(email) == 0 or len(name) == 0 or len(password) == 0:
+            self.label_info.setText(f'Ошибка. Заполните все поля!')
+        elif self.lineEdit_password.text() != self.lineEdit_password_conform.text():
+                self.label_info.setText(f'Ошибка. Пароли не совпадают!')
+        else:
+            self.create_acc(name, email, password)
+      
+            # back to login form
+            self.goto_login()
+
+    def create_acc(self, name, email, password):
+        # password = '1234'.encode('utf-8')
+        # hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+        # print(hashed)
+        password = password.encode('utf-8')
+        hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+        # create connection to
+        connect_to_bd = sqlite3.connect(DATABASE)
+        # create cursor for
+        cur = connect_to_bd.cursor()
+        # select_query from database
+        query = 'INSERT INTO users (username, password, email) VALUES (?, ?, ?)'
+        new_row = (name, hashed, email)
+        cur.execute(query, new_row)
+        connect_to_bd.commit()
+        connect_to_bd.close()
+        
+    
+    def goto_login(self):
+        # back to login form
         login = Login()
         widget.addWidget(login)
         widget.setCurrentIndex(widget.currentIndex() + 1)
-        
+      
     #TODO: create_acc_funtion => CREATE NEW ACCOUNT
 
 
