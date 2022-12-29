@@ -63,7 +63,6 @@ class Login(QDialog):
         widget.addWidget(create_acc)
         widget.setCurrentIndex(widget.currentIndex() + 1)
         
-
 class CreateAcc(QDialog):
     def __init__(self):
         super(CreateAcc, self).__init__()
