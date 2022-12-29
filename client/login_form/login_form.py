@@ -76,7 +76,9 @@ class CreateAcc(QDialog):
         """Login to chat client."""
         name = self.lineEdit_name.text()
         email = self.lineEdit_email.text()
+        
         password = self.lineEdit_password.text()
+        # TODO validate to save password. check password for secure
         if len(email) == 0 or len(name) == 0 or len(password) == 0:
             self.label_info.setText(f'Ошибка. Заполните все поля!')
         elif self.lineEdit_password.text() != self.lineEdit_password_conform.text():
