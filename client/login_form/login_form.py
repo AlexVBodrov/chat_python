@@ -13,6 +13,9 @@ UI_create_acc = 'client\login_form\create_acc.ui'
 
 
 class Login(QDialog):
+    """
+        QDialog Login to chat client.
+    """
     def __init__(self):
         super(Login, self).__init__()
         loadUi(UI_login_form, self)
@@ -31,6 +34,8 @@ class Login(QDialog):
             self.validate_password(name, password, name_bd=DATABASE)
     
     def validate_password(self, username, password,  name_bd=DATABASE):
+        """Validate password
+        """
         name = username
         
         #bytes for  hash function
@@ -56,12 +61,16 @@ class Login(QDialog):
         connect_to_bd.close()
     
     def goto_create_account(self):
+        """Goes to create a new account"""
         create_acc = CreateAcc()
         widget.addWidget(create_acc)
         widget.setCurrentIndex(widget.currentIndex() + 1)
         
 
 class CreateAcc(QDialog):
+    """
+        Create a new account
+    """
     def __init__(self):
         super(CreateAcc, self).__init__()
         loadUi(UI_create_acc, self)
@@ -90,6 +99,7 @@ class CreateAcc(QDialog):
             self.goto_login()
 
     def create_acc(self, name, email, password):
+        """Create new account"""
         # password = '1234'.encode('utf-8')
         # hashed = bcrypt.hashpw(password, bcrypt.gensalt())
         # print(hashed)
@@ -113,10 +123,6 @@ class CreateAcc(QDialog):
         widget.addWidget(login)
         widget.setCurrentIndex(widget.currentIndex() + 1)
       
-    #TODO: create_acc_funtion => CREATE NEW ACCOUNT
-
-
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
